@@ -1,14 +1,17 @@
 // ==UserScript==
 // @name         Highlight Your Bugzilla Comments
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1
+// @version      0.1.1
 // @description  Make your comments better visible in Bugzilla
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
-// @match        https://bugzilla.novell.com/show_bug.cgi?id=*
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_my_comments.user.js
 // ==/UserScript==
+
+// Note: if you do not use the "bugzilla_redirect.user.js" script
+// then add the @match key also with the https://bugzilla.novell.com and
+// https://bugzilla.opensuse.org variants.
 
 (function() {
     'use strict';
