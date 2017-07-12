@@ -8,6 +8,7 @@
 // @match        https://bugzilla.opensuse.org/*
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_redirect.user.js
+// @updateURL    https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_redirect.user.js
 // ==/UserScript==
 
 (function() {

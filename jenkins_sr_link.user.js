@@ -8,6 +8,7 @@
 // @match        https://ci.opensuse.org/*/console
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/blob/master/jenkins_sr_link.user.js
+// @updateURL    https://github.com/lslezak/monkey_scripts/blob/master/jenkins_sr_link.user.js
 // ==/UserScript==
 
 (function() {

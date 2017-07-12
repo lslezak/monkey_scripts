@@ -7,6 +7,7 @@
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_my_comments.user.js
+// @updateURL    https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_my_comments.user.js
 // ==/UserScript==
 
 // Note: if you do not use the "bugzilla_redirect.user.js" script
