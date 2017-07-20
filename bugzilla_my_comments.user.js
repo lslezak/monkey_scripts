@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Highlight Your Bugzilla Comments
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Make your comments better visible in Bugzilla
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
@@ -16,7 +16,7 @@
 
 (function() {
     'use strict';
-    // is the user logged in?
+    // is a user logged in?
     var login = document.querySelectorAll('li.dropdown > span.anchor');
     if (login.length > 0)
     {
@@ -26,8 +26,9 @@
         document.querySelectorAll('div.bz_comment').forEach(function(comment) {
             // check if the comment author email is the same as the logged user
             if (comment.querySelectorAll('a.email')[0].getAttribute("href") == ("mailto:" + email)){
-                // TODO: the private comments should probably have a different color...
-                comment.style.backgroundColor = "rgb(216, 216, 255)";
+                // different color for the private comments
+                var priv = comment.querySelectorAll('div.bz_private_checkbox > input[type="checkbox"]')[0].checked
+                comment.style.backgroundColor = priv ? "rgb(216, 216, 255)" : "rgb(251, 206, 148)";
                 comment.style.padding = "8px";
             }
         });
