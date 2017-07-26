@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Highlight Your Bugzilla Comments
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.2
+// @version      0.1.3
 // @description  Make your comments better visible in Bugzilla
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
@@ -28,7 +28,7 @@
             if (comment.querySelectorAll('a.email')[0].getAttribute("href") == ("mailto:" + email)){
                 // different color for the private comments
                 var priv = comment.querySelectorAll('div.bz_private_checkbox > input[type="checkbox"]')[0].checked;
-                comment.style.backgroundColor = priv ? "rgb(216, 216, 255)" : "rgb(251, 206, 148)";
+                comment.style.backgroundColor = priv ? "rgb(251, 206, 148)" : "rgb(216, 216, 255)";
                 comment.style.padding = "8px";
             }
         });
