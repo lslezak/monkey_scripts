@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Relative time in bugzilla comments
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Display relative time in bugzilla comment time stamps
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
+// @match        https://bugzilla.suse.com/process_bug.cgi
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_relative_time.user.js
 // @updateURL    https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_relative_time.user.js

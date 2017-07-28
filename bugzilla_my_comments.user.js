@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Highlight Your Bugzilla Comments
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.3
+// @version      0.1.4
 // @description  Make your comments better visible in Bugzilla
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
+// @match        https://bugzilla.suse.com/process_bug.cgi
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_my_comments.user.js
 // @updateURL    https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_my_comments.user.js
