@@ -41,12 +41,12 @@ Here are some scripts usable for the (open)SUSE Bugzilla bug tracking system.
 https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_redirect.user.js)
 
 The (open)SUSE Bugzilla can be accessed using several URLs:
-https://bugzilla.suse.com, https://bugzilla.opensuse.org and
+https://bugzilla.suse.com or https://bugzilla.opensuse.org or
 https://bugzilla.novell.com.
 
 Each domain requires separate authentication so it is quite annoying if you
-click a in an email or IRC chat and you have to login again because you
-you are already logged in in a different domain. Also the Novell domain use
+click a link in an email or IRC chat and you have to login again because you
+you are already logged in in a different domain. Also the Novell domain uses
 a different branding so it would be nice to always stick with the same UI.
 
 This script always redirects you to the bugzilla.suse.com pages
@@ -77,10 +77,11 @@ the displayed time zone in the bugzilla settings.*
 [ :arrow_down: [Install]](
 https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_my_comments.user.js)
 
-If a bug you are reading contains a lot of comments it would nice to spot
-your comments quickly so you can see when and what have you already
+If you are reading a bug with a lot of comments it would nice to spot
+your own comments quickly so you can see when and what have you already
 commented. This script adds a blue background to all your comments so you
-can find them quickly when scrolling up and down.
+can find them quickly when scrolling up and down. The private comments have
+an orange background.
 
 ![monkey_bugzilla_my_comments](
 https://user-images.githubusercontent.com/907998/28941004-d8b8448c-7896-11e7-9d36-6c1592459eea.png)
