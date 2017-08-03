@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Relative time in bugzilla comments
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Display relative time in bugzilla comment time stamps
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi?id=*
@@ -44,7 +44,7 @@ var TimeAgo = (function() {
             words = this.locales.prefix + separator,
             interval = 0,
             intervals = {
-                year:   seconds / 31536000,
+                year:   seconds / 63072000,
                 month:  seconds / 2592000,
                 day:    seconds / 86400,
                 hour:   seconds / 3600,
