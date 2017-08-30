@@ -119,6 +119,8 @@ https://user-images.githubusercontent.com/907998/28941004-d8b8448c-7896-11e7-9d3
 
 ### Jenkins
 
+#### Create Submit Requests Links
+
 [ :arrow_down: [Install]](
 https://github.com/lslezak/monkey_scripts/raw/master/jenkins_sr_link.user.js)
 
@@ -126,6 +128,9 @@ Converts the `created request id [number]` text into a clickable link which
 points to the created submit request. The script takes the API URL into account
 so the link correctly points to the internal or external build service depending
 on the API used.
+
+*(Note: it does not work when the text is added to the log when the job is
+running, you have to reload the page to restart the script.)*
 
 ![jenkins_sr_link](
 https://user-images.githubusercontent.com/907998/29870053-f84e1458-8d85-11e7-89ba-68d9ebe671df.png)
