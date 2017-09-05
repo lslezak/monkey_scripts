@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  Use one SUSE bugzilla consitently, automatically redirect from other domains
 // @author       Ladislav Slezák
+// @run-at       document-start
 // @match        https://bugzilla.novell.com/*
 // @match        https://bugzilla.opensuse.org/*
 // @grant        none
