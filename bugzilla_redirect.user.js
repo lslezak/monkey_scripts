@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto-redirect to the SUSE Bugzilla
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1
+// @version      0.1.1
 // @description  Use one SUSE bugzilla consitently, automatically redirect from other domains
 // @author       Ladislav Slezák
 // @run-at       document-start
