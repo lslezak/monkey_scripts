@@ -61,7 +61,7 @@ to edit the book mark and replace the old content with the new code.
 *Note: All scripts have been tested in the Chrome browser but should hopefully
 work also in the other browsers. But your mileage might vary...*
 
-### Bugzilla
+## Bugzilla
 
 Here are some scripts usable for the (open)SUSE Bugzilla bug tracking system.
 
@@ -117,7 +117,21 @@ an orange background.
 https://user-images.githubusercontent.com/907998/28941004-d8b8448c-7896-11e7-9d36-6c1592459eea.png)
 
 
-### Jenkins
+#### Converting Bugzilla / FATE Numbers to Links
+
+[ :arrow_down: [Install]](
+https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_links.user.js)
+
+This scripts converts Bugzilla and FATE numbers into clickable links.
+This makes finding the details and the relevant information much easier.
+
+The links created by the script have dashed underline style to make them
+different than the usual links.
+
+![screenshot_bugzilla_link](https://user-images.githubusercontent.com/907998/30249300-f4aef6de-9639-11e7-9acc-17ffddfa55f1.png)
+
+
+## Jenkins
 
 #### Create Submit Requests Links
 
