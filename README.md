@@ -22,7 +22,6 @@ But using bookmarklet has some disadvantages:
 
 - The bookmarklet must be started manually on the page
 - The scripts code cannot be updated automatically
-- You have to wrap the script into a simple function to make it work
 
 #### Installing a Bookmarklet
 
