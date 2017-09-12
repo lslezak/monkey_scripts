@@ -3,6 +3,12 @@
 This is a set of user scripts for the [Tampermonkey](https://tampermonkey.net/)
 web browser plugin.
 
+:warning: If you are new to the browser user scripts then read the
+[Userscript Beginners HOWTO](https://openuserjs.org/about/Userscript-Beginners-HOWTO)
+document first, at least the [What are the risks?](
+https://openuserjs.org/about/Userscript-Beginners-HOWTO#what-are-the-risks-)
+section.
+
 ## Installation
 
 ### Browser Plugin
@@ -52,8 +58,8 @@ to edit the book mark and replace the old content with the new code.
   http://commons.oreilly.com/wiki/index.php/Greasemonkey_Hacks) book contains
   several examples and good tips for writing you own scripts
 - https://openuserjs.org/ contains a lot of community scripts (but be careful,
-  keep in mind that those scripts have access to the cookies, local data,
-  etc... so they can easily steal your passwords or other sensitive data)
+  keep in mind that those scripts have access to your cookies, stored passwords
+  etc... so they can easily steal your passwords or other sensitive data!)
 
 ## Available User Scripts
 
@@ -74,12 +80,16 @@ https://bugzilla.suse.com or https://bugzilla.opensuse.org or
 https://bugzilla.novell.com.
 
 Each domain requires separate authentication so it is quite annoying if you
-click a link in an email or IRC chat and you have to login again because you
-you are already logged in in a different domain. Also the Novell domain uses
-a different branding so it would be nice to always stick with the same UI.
+click a link in an email or IRC chat and you get the "Access Denied" pages
+then you have to login again although you are already logged in in a different
+Bugzilla domain. Also the Novell domain uses a different branding so it would
+be nice to always stick with the same UI.
 
 This script always redirects you to the bugzilla.suse.com pages
 automatically without need to rewrite the URL manually.
+
+*Note: The script runs as soon as possible, usually the "Access Denied" page is
+not displayed and bugzilla.suse.com loading starts immediately.*
 
 
 #### Relative Time
@@ -127,8 +137,45 @@ This makes finding the details and the relevant information much easier.
 The links created by the script have dashed underline style to make them
 different than the usual links.
 
+(Note: the script runs only once, if the page is modified later then the new
+added numbers are not converted. That means switching to diff view in GitHub
+pull requests does not work, you have to reload the page for now.)
+
 ![screenshot_bugzilla_link](https://user-images.githubusercontent.com/907998/30249300-f4aef6de-9639-11e7-9acc-17ffddfa55f1.png)
 
+#### Trello Integration
+
+[ :arrow_down: [Install]](
+https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_trello_integration.user.js)
+
+This script integrates the information from Trello cards directly to SUSE Bugzilla.
+You can see the relevant Trello cards directly in the bug overview at the top.
+
+The script searches the YaST Trello boards for the current bug number and
+additionally scans the bug comments and the URL field for the Trello card links.
+It displays the card title, the board and list name and the persons assigned
+to that card. (Hint: see the tooltip if the real name.)
+
+![bugzilla_trello](https://user-images.githubusercontent.com/907998/30322050-7ce5cf58-97b8-11e7-8ef8-a8b46aaf8639.png)
+
+If there is no card found then a button for creating a new Trello card is displayed.
+
+![bugzilla_trello_add](https://user-images.githubusercontent.com/907998/30322058-84293a16-97b8-11e7-8d3b-5b3fe01edcfa.png)
+
+After clicking it a new card is created, the URL is added to the bug, the assignee
+is changed from `yast2-maintainers` to `yast-internal`, the status is changed from
+`NEW` to `CONFIRMED` and the bug is submitted.
+
+This basically implementes the functionality of [Martin Vidner's ytrello](
+https://github.com/mvidner/ytrello) directly in browser.
+
+*Note: At first you have to do Trello authorization to get the Trello API key.
+There is displayed a link to do that, just make sure the popup windows are not
+blocked by the browser. You can safely enable them for the Bugzilla URLs.*
+
+*Note: This script cannot work as a bookmarklet as it uses some additional
+functionality provided by the Tampermonkey plugin. Browsers would normally block
+the Trello requests because they break the same origin policy.*
 
 ## Jenkins
 
