@@ -137,9 +137,9 @@ This makes finding the details and the relevant information much easier.
 The links created by the script have dashed underline style to make them
 different than the usual links.
 
-(Note: the script runs only once, if the page is modified later then the new
+*Note: The script runs only once, if the page is modified later then the new
 added numbers are not converted. That means switching to diff view in GitHub
-pull requests does not work, you have to reload the page for now.)
+pull requests does not work, you have to reload the page for now.*
 
 ![screenshot_bugzilla_link](https://user-images.githubusercontent.com/907998/30249300-f4aef6de-9639-11e7-9acc-17ffddfa55f1.png)
 
@@ -154,7 +154,7 @@ You can see the relevant Trello cards directly in the bug overview at the top.
 The script searches the YaST Trello boards for the current bug number and
 additionally scans the bug comments and the URL field for the Trello card links.
 It displays the card title, the board and list name and the persons assigned
-to that card. (Hint: see the tooltip if the real name.)
+to that card. (*Hint: see the tooltip if the real name.*)
 
 ![bugzilla_trello](https://user-images.githubusercontent.com/907998/30322050-7ce5cf58-97b8-11e7-8ef8-a8b46aaf8639.png)
 
