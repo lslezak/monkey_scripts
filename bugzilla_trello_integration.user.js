@@ -24,8 +24,7 @@
 
     function debug(obj) {
         // to enable logging uncomment this line:
-        console.log(obj);
-        // TODO: disable debug later
+        // console.log(obj);
     }
 
     // escape special HTML characters
