@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Integrate Bugzilla with Trello
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi*
@@ -181,6 +181,8 @@
             return;
         }
 
+        // hide the "Add to Trello" button and display a progress
+        setTrelloContent("");
         displayTrelloSpinner();
 
         var bug_id = document.getElementsByName("id")[0].value;
