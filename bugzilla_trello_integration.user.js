@@ -202,8 +202,8 @@
     }
 
     // display generic error message in the "Trello" field
-    function displayError() {
-        setTrelloContent("Error: Trello connection failed");
+    function displayError(error = "Error: Trello connection failed") {
+        setTrelloContent(error);
     }
 
     // extract the API key from the https://trello.com/app-key HTML page
@@ -301,6 +301,7 @@
     }
 
     function getTrelloApiKey() {
+        displayTrelloSpinner();
         GM_xmlhttpRequest({
             method: "GET",
             url: "https://trello.com/app-key",
@@ -315,8 +316,8 @@
                     if (api_key) {
                         // save the key for later
                         GM_setValue("bugzilla_trello_api_key", api_key);
-                        // just reload the page to restart the setup
-                        window.location.reload();
+                        // display the authorization link
+                        displayTrelloAuthorization();
                     } else {
                         console.error(response);
                         displayError();
@@ -352,6 +353,12 @@
 
         var authWindow = window.open(url, "trello", properties);
         debug(authWindow);
+        // popups probably blocked by the browser?
+        if (authWindow === null) {
+          hideTrelloSpinner();
+          displayError("Cannot open Trello window, popups blocked by browser?");
+          return;
+        }
 
         var receiveMessage = function(event) {
             debug(event);
@@ -504,6 +511,12 @@
       });
     }
 
+    function displayTrelloAuthorization() {
+      hideTrelloSpinner();
+      setTrelloContent("<a id='trello_authorization' href='#'>Authorize Trello</a>");
+      document.getElementById("trello_authorization").onclick = authorizeTrello;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////
 
     if (!document.getElementById("bug_file_loc")) {
@@ -524,9 +537,7 @@
     }
 
     if (isEmpty(trelloToken())) {
-        hideTrelloSpinner();
-        setTrelloContent("<a id='trello_authorization' href='#'>Authorize Trello</a>");
-        document.getElementById("trello_authorization").onclick = authorizeTrello;
+        displayTrelloAuthorization();
 
         // finish the script, we do no have the token and cannot continue,
         // the authorization runs after clicking the link
