@@ -137,10 +137,6 @@ This makes finding the details and the relevant information much easier.
 The links created by the script have dashed underline style to make them
 different than the usual links.
 
-*Note: The script runs only once, if the page is modified later then the new
-added numbers are not converted. That means switching to diff view in GitHub
-pull requests does not work, you have to reload the page for now.*
-
 ![screenshot_bugzilla_link](https://user-images.githubusercontent.com/907998/30249300-f4aef6de-9639-11e7-9acc-17ffddfa55f1.png)
 
 #### Trello Integration

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Convert Bugzilla/Fate numbers to links
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.0.1
+// @version      0.1.0
 // @description  Convert bug and feature numbers into clickable links
 // @author       Ladislav Slezák
 // @match        https://trello.com/*
@@ -15,51 +15,52 @@
 // @match        https://*.opensuse.org/
 // @grant        none
 // @downloadURL  https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_links.user.js
-// @updateURL    https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_links.user.js
+// @updateURL    https://github.com/lslezak/monkey_scripts/raw/master/bugzilla_links.meta.js
 // ==/UserScript==
 
-
-(function() {
+function bugIds() {
     'use strict';
-
-    // based on http://commons.oreilly.com/wiki/index.php/Greasemonkey_Hacks/Linkmania%21
-
-    var t0 = performance.now();
-
-    var bug_ids = [
+    return [
         {
             regexp: /\bbug\s*#{0,1}\s*([0-9]+)/ig,
-            id:     "bug",
-            link:   "https://bugzilla.suse.com/show_bug.cgi?id="
+            id: "bug",
+            link: "https://bugzilla.suse.com/show_bug.cgi?id="
         },
         {
             regexp: /\bbsc\s*#{0,1}\s*([0-9]+)/ig,
-            id:     "bsc",
-            link:   "https://bugzilla.suse.com/show_bug.cgi?id="
+            id: "bsc",
+            link: "https://bugzilla.suse.com/show_bug.cgi?id="
         },
         {
             regexp: /\bbnc\s*#{0,1}\s*([0-9]+)/ig,
-            id:     "bnc",
-            link:   "https://bugzilla.novell.com/show_bug.cgi?id="
+            id: "bnc",
+            link: "https://bugzilla.novell.com/show_bug.cgi?id="
         },
         {
             regexp: /\bboo\s*#{0,1}\s*([0-9]+)/ig,
-            id:     "boo",
-            link:   "https://bugzilla.opensuse.org/show_bug.cgi?id="
+            id: "boo",
+            link: "https://bugzilla.opensuse.org/show_bug.cgi?id="
         },
         {
             regexp: /\bfate\s*#{0,1}\s*([0-9]+)/ig,
-            id:     "fate",
-            link:   "https://fate.suse.com/"
+            id: "fate",
+            link: "https://fate.suse.com/"
         },
         {
             regexp: /\bcve-(\d+-\d+)/ig,
-            id:     "cve",
-            link:   "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-"
+            id: "cve",
+            link: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-"
         },
     ];
+}
 
-    bug_ids.forEach(function(bug_id) {
+// based on http://commons.oreilly.com/wiki/index.php/Greasemonkey_Hacks/Linkmania%21
+function make_links(parent_node) {
+    'use strict';
+    var t0 = performance.now();
+
+    bugIds().forEach(function(bug_id) {
+        // TODO: optimize this, run the XPath qury once for all bug IDs
         var snapTextElements = document.evaluate("//text()[not(ancestor::a) " +
                                                  "and not(ancestor::script) and not(ancestor::style) and " +
                                                  "contains(translate(., '" + bug_id.id.toUpperCase() + "', '" + bug_id.id + "'), '" + bug_id.id + "')]",
@@ -95,6 +96,41 @@
 
     var t1 = performance.now();
     console.log("Bugzilla linking took " + (t1 - t0).toFixed(2) + " milliseconds.");
+}
 
+(function() {
+    make_links(document);
+
+    // configuration of the observer
+    var config = {
+        attributes: false,
+        childList: true,
+        characterData: true,
+        subtree: true
+    };
+
+    // create an observer instance
+    var observer = new MutationObserver(function(mutations) {
+        // disable the observer when a callback is triggered
+        // our code will change the DOM as well => it would trigger
+        // this function recursively
+        observer.disconnect();
+
+        // if there are too many mutations simply rescan the whole document,
+        // scanning hundreds of small parts is more expansive than
+        // one scan over the whole document
+        if (mutations.length > 10) {
+            make_links(document);
+        } else {
+            mutations.forEach(function(mutation) {
+                make_links(mutation.target);
+            });
+        }
+
+        // activate the observer again after all changes are done
+        observer.observe(document, config);
+    });
+
+    // observe changes in the whole document
+    observer.observe(document, config);
 })();
-
