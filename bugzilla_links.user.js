@@ -1,10 +1,9 @@
 // ==UserScript==
 // @name         Convert Bugzilla/Fate numbers to links
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Convert bug and feature numbers into clickable links
 // @author       Ladislav Slezák
-// @match        https://trello.com/*
 // @match        https://bugzilla.*/*
 // @match        https://github.com/*
 // @match        https://gist.github.com/*
