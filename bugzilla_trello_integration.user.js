@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Integrate Bugzilla with Trello
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi*
@@ -174,12 +174,15 @@
     // validate the bug state, display a spinner and create a new Trello card
     function addToTrello() {
         // check priority != P5 None, priority is part of the card label
-        // make sure there is something meaningful
+        // suggest using something reasonable
         var prio = prioShort(document.getElementById("priority").value);
-        if (prio === "P5") {
-            alert("Error: Priority needs to be set to P1-P4 \nfor creating a Trello card.");
+        if ((prio === "P5") &&
+            !confirm("The priority is set to P5, but maybe it would be nice\n" +
+              "to change it to some reasonable value (P1-P4) before\n" +
+              "creating a Trello card.\n\n" +
+              "Do you really want to create the Trello card with P5 priority?")
+            )
             return;
-        }
 
         // hide the "Add to Trello" button and display a progress
         setTrelloContent("");
