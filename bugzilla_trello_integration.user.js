@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.2
+// @version      0.1.3
 // @description  Integrate Bugzilla with Trello
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi*
@@ -29,6 +29,8 @@
 
     // escape special HTML characters
     function escapeHtml(unsafe) {
+        if (unsafe === null) return "";
+
         return unsafe
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
