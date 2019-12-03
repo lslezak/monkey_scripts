@@ -190,3 +190,24 @@ running, you have to reload the page to restart the script.)*
 
 ![jenkins_sr_link](
 https://user-images.githubusercontent.com/907998/29870053-f84e1458-8d85-11e7-89ba-68d9ebe671df.png)
+
+#### Enable/Disable YaST Autosubmission
+
+[ :arrow_down: [Install]](
+https://github.com/lslezak/monkey_scripts/raw/master/jenkins_change_all_jobs.user.js)
+
+This script adds `Enable` and `Disable` buttons into the YaST Jenkins pages. These buttons
+globally enable/disable YaST autosubmission to Factory (in the [public Jenkins](
+https://ci.opensuse.org/view/Yast/)) or to the latest SLE (in the [internal Jenkins](
+https://ci.suse.de/view/YaST/)) by enabling or disabling all YaST jobs for the
+`master` Git branch.
+
+You need to be logged in to change the job statuses, see [this internal wiki page](
+https://wiki.suse.net/index.php/YaST/jenkins) for more details.
+
+![jenkins_enable_disable_buttons](
+https://user-images.githubusercontent.com/907998/70715789-480e2400-1ceb-11ea-90d0-4524fc26d6cb.png)
+
+*Note: The current status of the jobs is read from the displayed table,
+it is recommended to reload the page before changing the jobs if the page
+has been loaded long time ago.*
