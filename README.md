@@ -165,13 +165,23 @@ is changed from `yast2-maintainers` to `yast-internal`, the status is changed fr
 This basically implementes the functionality of [Martin Vidner's ytrello](
 https://github.com/mvidner/ytrello) directly in browser.
 
-*Note: At first you have to do Trello authorization to get the Trello API key.
-There is displayed a link to do that, just make sure the popup windows are not
-blocked by the browser. You can safely enable them for the Bugzilla URLs.*
+Before start using it, the Trello Developer API Key must be already generated.
+If you do not have it yet, got to  https://trello.com/app-key and follow the
+instructions given there. Otherwise, the `Error: Trello connection failed`
+message will be displayed.
 
-*Note: This script cannot work as a bookmarklet as it uses some additional
+In addition, at first, you have to do Trello authorization to get the Trello
+application token. There is displayed a link to do that, **just make sure the
+popup windows are not blocked by the browser**. You can safely enable them for the
+Bugzilla URLs.
+
+---
+
+:warning: This script cannot work as a bookmarklet as it uses some additional
 functionality provided by the Tampermonkey plugin. Browsers would normally block
-the Trello requests because they break the same origin policy.*
+the Trello requests because they break the same origin policy.
+
+---
 
 ## Jenkins
 
