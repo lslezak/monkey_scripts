@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Convert Bugzilla/Fate numbers to links
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.1
+// @version      0.2.0
 // @description  Convert bug and feature numbers into clickable links
 // @author       Ladislav Slezák
 // @match        https://bugzilla.*/*
@@ -54,12 +54,12 @@ function bugIds() {
 }
 
 // based on http://commons.oreilly.com/wiki/index.php/Greasemonkey_Hacks/Linkmania%21
-function make_links(parent_node) {
+function make_links() {
     'use strict';
     var t0 = performance.now();
 
     bugIds().forEach(function(bug_id) {
-        // TODO: optimize this, run the XPath qury once for all bug IDs
+        // TODO: optimize this, run the XPath query once for all bug IDs
         var snapTextElements = document.evaluate("//text()[not(ancestor::a) " +
                                                  "and not(ancestor::script) and not(ancestor::style) and " +
                                                  "contains(translate(., '" + bug_id.id.toUpperCase() + "', '" + bug_id.id + "'), '" + bug_id.id + "')]",
@@ -98,7 +98,8 @@ function make_links(parent_node) {
 }
 
 (function() {
-    make_links(document);
+    // do the initial linking after loading the page
+    make_links();
 
     // configuration of the observer
     var config = {
@@ -108,28 +109,27 @@ function make_links(parent_node) {
         subtree: true
     };
 
-    // create an observer instance
+    // timer for delayed update
+    var timer;
+
+    // create an observer for watching the changes in the document
     var observer = new MutationObserver(function(mutations) {
-        // disable the observer when a callback is triggered
-        // our code will change the DOM as well => it would trigger
-        // this function recursively
-        observer.disconnect();
-
-        // if there are too many mutations simply rescan the whole document,
-        // scanning hundreds of small parts is more expansive than
-        // one scan over the whole document
-        if (mutations.length > 10) {
-            make_links(document);
-        } else {
-            mutations.forEach(function(mutation) {
-                make_links(mutation.target);
-            });
+        if (timer){
+            console.log("Delaying bugzilla linking");
+            clearTimeout(timer);
         }
+        timer = setTimeout(function() {
+            // disable the observer, our code will change the DOM as well,
+            // that would trigger this function recursively
+            observer.disconnect();
 
-        // activate the observer again after all changes are done
-        observer.observe(document, config);
+            make_links();
+
+            // activate the observer again after all changes are done
+            observer.observe(document, config);
+        }, 1000);
     });
 
-    // observe changes in the whole document
+    // watch for changes in the whole document
     observer.observe(document, config);
 })();
