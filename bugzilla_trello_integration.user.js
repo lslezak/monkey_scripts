@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.5
+// @version      0.1.6
 // @description  Integrate Bugzilla with Trello
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi*
@@ -154,12 +154,12 @@
             method: "POST",
             responseType: "JSON",
             url: buildTrelloUrl("cards", card),
-            onload: function(response) {
-                // debug(response);
-                var ret = JSON.parse(response.responseText);
+            onload: function(xhr) {
+                var ret = xhr.response
+                // debug(xhr);
                 debug(ret);
 
-                if (response.status != 200) {
+                if (xhr.status != 200) {
                     console.error("Error: Creating the card failed!");
                     displayError();
                     return;
@@ -312,13 +312,13 @@
         GM_xmlhttpRequest({
             method: "GET",
             url: "https://trello.com/app-key",
-            onload: function(response) {
+            onload: function(xhr) {
                 hideTrelloSpinner();
-                // debug(response);
-                if (response.status == 401) {
+                // debug(xhr);
+                if (xhr.status == 401) {
                   setTrelloContent("<a href='https://trello.com/login'>Log into Trello</a>");
-                } else if (response.status == 200) {
-                    var api_key = apiKeyFromHtml(response.responseText);
+                } else if (xhr.status == 200) {
+                    var api_key = apiKeyFromHtml(xhr.response);
                     // debug(api_key);
                     if (api_key) {
                         // save the key for later
@@ -326,11 +326,11 @@
                         // display the authorization link
                         displayTrelloAuthorization();
                     } else {
-                        console.error(response);
+                        console.error(xhr);
                         displayError();
                     }
                 } else {
-                    console.error(response);
+                    console.error(xhr);
                     displayError();
                 }
             }
@@ -489,9 +489,9 @@
         method: "GET",
         responseType: "JSON",
         url: buildTrelloUrl(path, params),
-        onload: function(response) {
-          debug(response);
-          var ret = JSON.parse(response.responseText);
+        onload: function(xhr) {
+          debug(xhr);
+          var ret = xhr.response;
           debug(ret);
         }
       });
@@ -503,10 +503,10 @@
           method: method,
           responseType: "JSON",
           url: buildTrelloUrl(path, params),
-          onload: function(response) {
-            debug(response);
+          onload: function(xhr) {
+            debug(xhr);
             // TODO: error handling
-            resolve(JSON.parse(response.responseText));
+            resolve(xhr.response);
           },
           onerror: function() {
             reject();
@@ -583,9 +583,9 @@
           card_board: true,
           board_fields: "name"
         }),
-        onload: function(response) {
-            // debug(response);
-            var ret = JSON.parse(response.responseText);
+        onload: function(xhr) {
+            // debug(xhr);
+            var ret = xhr.response;
             debug(ret);
 
             // filter the card name matches only, Trello searches in descriptions as well
