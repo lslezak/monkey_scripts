@@ -155,7 +155,7 @@
             responseType: "JSON",
             url: buildTrelloUrl("cards", card),
             onload: function(response) {
-                var ret = response.responseText
+                var ret = response.response
                 // debug(response);
                 debug(ret);
 
@@ -318,7 +318,7 @@
                 if (response.status == 401) {
                   setTrelloContent("<a href='https://trello.com/login'>Log into Trello</a>");
                 } else if (response.status == 200) {
-                    var api_key = apiKeyFromHtml(response.responseText);
+                    var api_key = apiKeyFromHtml(response.response);
                     // debug(api_key);
                     if (api_key) {
                         // save the key for later
@@ -491,7 +491,7 @@
         url: buildTrelloUrl(path, params),
         onload: function(response) {
           debug(response);
-          var ret = response.responseText;
+          var ret = response.response;
           debug(ret);
         }
       });
@@ -506,7 +506,7 @@
           onload: function(response) {
             debug(response);
             // TODO: error handling
-            resolve(response.responseText);
+            resolve(response.response);
           },
           onerror: function() {
             reject();
@@ -585,7 +585,7 @@
         }),
         onload: function(response) {
             // debug(response);
-            var ret = response.responseText;
+            var ret = response.response;
             debug(ret);
 
             // filter the card name matches only, Trello searches in descriptions as well
