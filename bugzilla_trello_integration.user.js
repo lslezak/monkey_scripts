@@ -155,8 +155,8 @@
             responseType: "JSON",
             url: buildTrelloUrl("cards", card),
             onload: function(response) {
+                var ret = response.responseText
                 // debug(response);
-                var ret = JSON.parse(response.responseText);
                 debug(ret);
 
                 if (response.status != 200) {
@@ -491,7 +491,7 @@
         url: buildTrelloUrl(path, params),
         onload: function(response) {
           debug(response);
-          var ret = JSON.parse(response.responseText);
+          var ret = response.responseText;
           debug(ret);
         }
       });
@@ -506,7 +506,7 @@
           onload: function(response) {
             debug(response);
             // TODO: error handling
-            resolve(JSON.parse(response.responseText));
+            resolve(response.responseText);
           },
           onerror: function() {
             reject();
@@ -585,7 +585,7 @@
         }),
         onload: function(response) {
             // debug(response);
-            var ret = JSON.parse(response.responseText);
+            var ret = response.responseText;
             debug(ret);
 
             // filter the card name matches only, Trello searches in descriptions as well
