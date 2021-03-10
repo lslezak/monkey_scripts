@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.4
+// @version      0.1.5
 // @description  Integrate Bugzilla with Trello
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi*
@@ -280,8 +280,8 @@
         var avatars = card.members.map(function(m) {
             if (m.avatarHash === null) return "(" + escapeHtml(m.fullName) + ") ";
 
-            return "<img class=\"avatar_icon\" src=\"https://trello-avatars.s3.amazonaws.com/" +
-              escapeHtml(m.avatarHash) + "/30.png\" title=\"" + escapeHtml(m.fullName) + "\">";
+            return "<img class=\"avatar_icon\" src=\"" +
+              escapeHtml(m.avatarUrl) + "/30.png\" title=\"" + escapeHtml(m.fullName) + "\">";
         });
 
         return "<div class='trello_info'>" + ret + "<span>" + avatars.join('') + "</span></div>";
