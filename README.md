@@ -221,3 +221,23 @@ https://user-images.githubusercontent.com/907998/70715789-480e2400-1ceb-11ea-90d
 *Note: The current status of the jobs is read from the displayed table,
 it is recommended to reload the page before changing the jobs if the page
 has been loaded long time ago.*
+
+---
+
+## Trello
+
+### Better Aging
+
+[ :arrow_down: [Install]](
+https://github.com/lslezak/monkey_scripts/raw/master/trello_better_aging.user.js)
+
+You can enable aging feature in Trello which changes the style of cards which
+have not been updated for long time. The feature is nice but the look of the old
+cards is a bit ugly, the cards are grayed and worse readable.
+
+This script just adds a grey left border to the old cards and keeps the original
+style so the cards are better readable.
+
+
+
+![better_trello_aging](https://user-images.githubusercontent.com/907998/147091800-abb1af77-ba32-4852-b766-5d1f7b2501be.png)
