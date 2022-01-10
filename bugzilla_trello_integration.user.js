@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.7
+// @version      0.1.8
 // @description  Integrate Bugzilla with Trello
 // @author       Ladislav Slezák
 // @match        https://bugzilla.suse.com/show_bug.cgi*
@@ -65,8 +65,13 @@
     // get list for the new card depending on the product abbreviation
     function listId(product_abbrev) {
         var product_lists = {
-            "SLE[SD]15": "607e88c00cfd398fa9eb7b32",     // SLE-15-SP3
-            // "59a3db0f0fac7c99d1808ae9" is "SLE 15 Storage" but we can't autodetect that
+            "SLE[SD]15-SP4": "6177ab1815c16e7f277e3ff1", // Currently developed products (SLE 15 SP4/15.4)
+            "SLE[SD]15-SP3": "607e88c00cfd398fa9eb7b32", // SLE-15-SP3
+            "SLE[SD]15-SP2": "5952060e0e9190605c75863e", // SLE-15-SP2
+            "SLE[SD]15-SP1": "5ae2fc56632c8d6e1793411d", // SLE-15-SP1
+            "SLE[SD]15": "5dfb6aec261b1e363bbf179b",     // SLE-15-GA
+            "SLE[SD]12-SP5": "5d496ff27159861d8d57df2b", // SLE-12-SP5 Maintenance
+            "SLE[SD]12-SP4": "5b043477ed142820a90b8412", // SLE-12-SP4 Maintenance
             "SLE[SD]12-SP3": "57cfdbcc9ae10f3d1fb996d3", // SLE-12-SP3 Maintenance
             "SLE[SD]12-SP2": "5538994821027776154180eb", // SLE12-SP2 Maintenance
             "SLE[SD]12-SP1": "5502d6719b0d5db70bcf6655", // SLE12-SP1 maintenance
@@ -552,7 +557,7 @@
     }
 
 
-    // some dubugging hints to get the internal IDs:
+    // some debugging hints to get the internal IDs:
     // to get the board IDs:
     // trelloDebugQuery("members/me/boards");
     // to get the list IDs:

@@ -1,5 +1,5 @@
 // ==UserScript==
 // @name         Bugzilla Trello integration
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.1.7
+// @version      0.1.8
 // ==/UserScript==
