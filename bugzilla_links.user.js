@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Convert Bugzilla/Fate numbers to links
 // @namespace    https://blog.ladslezak.cz/
-// @version      0.2.0
+// @version      0.2.1
 // @description  Convert bug and feature numbers into clickable links
 // @author       Ladislav Slezák
 // @match        https://bugzilla.*/*
@@ -49,6 +49,11 @@ function bugIds() {
             regexp: /\bcve-(\d+-\d+)/ig,
             id: "cve",
             link: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-"
+        },
+        {
+            regexp: /\bjsc\s*#{0,1}\s*(\S+)\b/ig,
+            id: "jsc",
+            link: "https://jira.suse.com/browse/"
         },
     ];
 }
